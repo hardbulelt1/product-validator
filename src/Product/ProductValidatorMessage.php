@@ -3,7 +3,7 @@
  * Class ProductValidatorMessage
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-
+namespace Validation\Product;
 
 class ProductValidatorMessage
 {
