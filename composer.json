@@ -1,17 +1,16 @@
 {
-    "name": "velosite/:package_name",
-    "description": ":package_description",
+    "name": "velosite/productValidator",
+    "description": "Validation products",
     "keywords": [
-        "league",
+        "validation",
         "package"
     ],
-    "homepage": "https://github.com/php-loep/:package_name",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author_email@example.com",
-            "homepage": "http://author-website.example.com",
+            "name": "Denis Medvedevskih",
+            "email": "d.medvedevskih@velosite.ru",
+            "homepage": "d.medvedevskih@velosite.ru",
             "role": "Developer"
         }
     ],
