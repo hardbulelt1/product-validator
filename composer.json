@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Velosite\\": "src"
+            "Validator\\": "src"
         }
     },
     "autoload-dev": {

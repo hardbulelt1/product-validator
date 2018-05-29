@@ -3,6 +3,7 @@
  * Class ProductInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
+namespace Validator\Interfaces;
 
 interface ProductInterface
 {
