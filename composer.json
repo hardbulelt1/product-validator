@@ -1,5 +1,5 @@
 {
-    "name": "league/:package_name",
+    "name": "velosite/:package_name",
     "description": ":package_description",
     "keywords": [
         "league",
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "League\\Skeleton\\": "src"
+            "Velosite\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "League\\Skeleton\\Test\\": "tests"
+            "Velosite\\Test\\": "tests"
         }
     },
     "extra": {
