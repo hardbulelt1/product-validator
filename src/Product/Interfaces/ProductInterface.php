@@ -16,23 +16,17 @@ interface ProductInterface
     const TYPE_OTHER = 'other';
 
     public function getSku();
-
     public function getCode();
-
     public function getModel();
-
     public function getPictures();
-
     public function isOfType($types);
-
     public function get_categories();
     public function getId1c();
     public function hasCategory(int $categoryId);
-    public function getDescription();
-    public function getTagLine();
+    public function get_description();
+    public function get_tag_line();
     public function getPriceCurrent();
-    public function getIsPriceVariable();
-
+    public function getPriceVariable();
     public function setValid(bool $valid);
     public function hasFeature($feature);
     public function is_bike();
