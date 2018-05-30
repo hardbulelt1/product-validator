@@ -3,12 +3,10 @@
  * Class ProductValidator
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Product;
-
-use Validator\Product\Interfaces\ProductInterface;
-use Validator\Product\Interfaces\ProductValidatorInterface;
+namespace Validator\Validator;
 use Validator\Product\Message\ValidatorMessage;
-use Validator\Validator\Validator;
+use Validator\Product\ProductInterface;
+
 
 class ProductValidator extends Validator
 {

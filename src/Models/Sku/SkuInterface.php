@@ -3,9 +3,10 @@
  * Class SkuInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Sku\Interfaces;
+namespace Validator\Sku;
 
-use Validator\Product\Interfaces\ProductInterface;
+use Validator\Feature\FeatureInterface;
+use Validator\Product\ProductInterface;
 
 interface SkuInterface
 {
@@ -31,4 +32,14 @@ interface SkuInterface
     public function getProduct();
 
     public function setValid(bool $valid);
+
+    public function getTotalStock();
+
+    public function getPriceOld();
+
+    /**
+     * @param $key
+     * @return FeatureInterface
+     */
+    public function getFeature($key);
 }

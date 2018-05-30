@@ -5,8 +5,6 @@
  */
 
 namespace Validator\Sku;
-
-use Validator\Sku\Interfaces\SkuInterface;
 use Validator\Validator\Validator;
 
 class SkuValidator extends Validator

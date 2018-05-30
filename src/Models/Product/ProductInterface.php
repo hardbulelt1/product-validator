@@ -4,10 +4,11 @@
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
 
-namespace Validator\Product\Interfaces;
+namespace Validator\Product;
 
-use Validator\Category\Interfaces\CategoryInterface;
-use Validator\Sku\Interfaces\SkuInterface;
+use Validator\Category\CategoryInterface;
+use Validator\Feature\FeatureInterface;
+use Validator\Sku\SkuInterface;
 
 interface ProductInterface
 {
@@ -102,4 +103,33 @@ interface ProductInterface
      * @return bool
      */
     public function isKickScooter(): bool;
+
+    public function setFeatureValue($key,$value);
+
+    public function setStockTotal($total);
+
+    public function getStockTotal();
+
+    public function setPriceCurrent($price);
+
+    public function setPriceOld($price);
+    public function getPriceOld();
+
+    /**
+     * @param $key
+     * @return FeatureInterface
+     */
+    public function getFeature($key);
+
+    public function setHasPreOrder($value);
+
+    public function getId();
+
+    public function setAdditionalFilterValid($valid);
+
+    public function deleteFeature($key);
+
+    public function setCartCount($count);
+
+    public function setViewsCount($count);
 }
