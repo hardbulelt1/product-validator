@@ -3,7 +3,7 @@
  * Class ProductValidator
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validation\Product;
+namespace Validator\Product;
 
 use Validator\Product\Interfaces\ProductInterface;
 
