@@ -10,17 +10,20 @@ use Validator\Product\Interfaces\ProductInterface;
 class ProductValidator
 {
     private $product;
-    private $messages = [];
+    private $messages;
     private $isValid;
 
     public function __construct(ProductInterface $product)
     {
         $this->product = $product;
         $this->isValid = true;
+        $this->messages = [];
     }
 
-
-    public function validate()
+    /**
+     * @return bool
+     */
+    public function validate(): bool
     {
         $this->validatePrice();
         $this->validateImages();
@@ -34,6 +37,14 @@ class ProductValidator
         $this->validateTagLine();
 
         return $this->isValid;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMessages(): array
+    {
+        return $this->messages;
     }
 
     /**
