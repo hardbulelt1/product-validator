@@ -41,7 +41,7 @@ class ProductValidator
      */
     private function validatePrice(): bool
     {
-        if ($this->product->getPriceCurrent() == 0 && !$this->product->getIsPriceVariable()) {
+        if ($this->product->getPriceCurrent() == 0 && !$this->product->getPriceVariable()) {
             $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет цены'));
             $this->isValid = false;
         }
@@ -53,7 +53,7 @@ class ProductValidator
      */
     private function validateImages(): bool
     {
-        if (!$this->product->isOfType(ProductInterface::TYPE_WORKSHOP_SERVICE) && $this->product->getPictures()->count() == 0) {
+        if (!$this->product->isOfType(ProductInterface::TYPE_WORKSHOP_SERVICE) && (count($this->product->getPictures()) == 0)) {
             $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR,
                 'Нет ни однйо картинки'));
             $this->isValid = false;
@@ -66,7 +66,7 @@ class ProductValidator
      */
     private function validateSku(): bool
     {
-        if ($this->product->getSku()->count() == 0) {
+        if (count($this->product->getSku()) == 0) {
             $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет ни одного СКУ'));
             $this->isValid = false;
         }
@@ -151,7 +151,7 @@ class ProductValidator
      */
     private function validateDescription(): bool
     {
-        if (!$this->product->getDescription()) {
+        if (!$this->product->get_description()) {
             $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_WARNING, 'Нет описания'));
         }
         return $this->isValid;
@@ -162,7 +162,7 @@ class ProductValidator
      */
     private function validateTagLine(): bool
     {
-        if (!$this->product->getTagLine()) {
+        if (!$this->product->get_tag_line()) {
             $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_WARNING, 'Нет тэглайна'));
         }
         return $this->isValid;
@@ -247,7 +247,7 @@ class ProductValidator
     {
         $missingCompulsoryFilters = [];
         if ($this->product->is_bike() || $this->product->isKickScooter()) {
-            foreach ($this->product->sku as $sku) {
+            foreach ($this->product->getSku() as $sku) {
                 if (!in_array('color', $missingCompulsoryFilters) && !$sku->hasFeature('color')) {
                     $missingCompulsoryFilters[] = 'color';
                 }
