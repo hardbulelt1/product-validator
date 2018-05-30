@@ -3,9 +3,9 @@
  * Class ProductValidatorMessage
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Product;
+namespace Validator\Product\Message;
 
-class ProductValidatorMessage
+class ValidatorMessage
 {
 
     const TYPE_INFO = 'info';

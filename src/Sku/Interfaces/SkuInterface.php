@@ -5,6 +5,8 @@
  */
 namespace Validator\Sku\Interfaces;
 
+use Validator\Product\Interfaces\ProductInterface;
+
 interface SkuInterface
 {
     /**
@@ -17,4 +19,16 @@ interface SkuInterface
      * @return bool
      */
     public function isValid(): bool;
+
+    /**
+     * @return mixed
+     */
+    public function getPriceCurrent();
+
+    /**
+     * @return ProductInterface
+     */
+    public function getProduct();
+
+    public function setValid(bool $valid);
 }

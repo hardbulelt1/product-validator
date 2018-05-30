@@ -6,18 +6,19 @@
 namespace Validator\Product;
 
 use Validator\Product\Interfaces\ProductInterface;
+use Validator\Product\Interfaces\ProductValidatorInterface;
+use Validator\Product\Message\ValidatorMessage;
+use Validator\Validator\Validator;
 
-class ProductValidator
+class ProductValidator extends Validator
 {
     private $product;
-    private $messages;
     private $isValid;
 
     public function __construct(ProductInterface $product)
     {
         $this->product = $product;
         $this->isValid = true;
-        $this->messages = [];
     }
 
     /**
@@ -28,10 +29,11 @@ class ProductValidator
         $this->validatePrice();
         $this->validateImages();
         $this->validateSku();
+        $this->hasMissingSkuCompulsoryFilters();
         $this->validateModel();
         $this->validateCode();
         $this->validateCategories();
-        $this->validateFilters();
+        $this->hasMissingCompulsoryFilters();
         $this->validateId1c();
         $this->validateDescription();
         $this->validateTagLine();
@@ -39,13 +41,7 @@ class ProductValidator
         return $this->isValid;
     }
 
-    /**
-     * @return array
-     */
-    public function getMessages(): array
-    {
-        return $this->messages;
-    }
+
 
     /**
      * @return bool
@@ -53,7 +49,7 @@ class ProductValidator
     private function validatePrice(): bool
     {
         if ($this->product->getPriceCurrent() == 0 && !$this->product->getPriceVariable()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет цены'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Нет цены'));
             $this->isValid = false;
         }
         return $this->isValid;
@@ -65,7 +61,7 @@ class ProductValidator
     private function validateImages(): bool
     {
         if (!$this->product->isOfType(ProductInterface::TYPE_WORKSHOP_SERVICE) && (count($this->product->getPictures()) == 0)) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR,
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR,
                 'Нет ни однйо картинки'));
             $this->isValid = false;
         }
@@ -78,19 +74,15 @@ class ProductValidator
     private function validateSku(): bool
     {
         if (count($this->product->getSku()) == 0) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет ни одного СКУ'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Нет ни одного СКУ'));
             $this->isValid = false;
         }
         if ($this->hasNoValidSku()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR,
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR,
                 'Нет ни одного валидного СКУ (с ценой и всеми фильтрами)'));
             $this->isValid = false;
         }
-        if ($this->hasMissingSkuCompulsoryFilters()) {
-            $this->isValid = false;
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_WARNING,
-                'Есть СКУ с незаполненными обязательными фильтрами'));
-        }
+
         return $this->isValid;
     }
 
@@ -100,7 +92,7 @@ class ProductValidator
     private function validateModel(): bool
     {
         if (!$this->product->getModel()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет названия модели'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Нет названия модели'));
             $this->isValid = false;
         }
         return $this->isValid;
@@ -112,7 +104,7 @@ class ProductValidator
     private function validateCode(): bool
     {
         if (!$this->product->getCode()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Нет кода товара'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Нет кода товара'));
             $this->isValid = false;
         }
         return $this->isValid;
@@ -124,7 +116,7 @@ class ProductValidator
     private function validateCategories(): bool
     {
         if (count($this->product->get_categories()) == 0) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR,
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR,
                 'Нет ни одной категории'));
             $this->isValid = false;
         }
@@ -135,23 +127,10 @@ class ProductValidator
     /**
      * @return bool
      */
-    private function validateFilters(): bool
-    {
-        if ($this->hasMissingCompulsoryFilters()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR,
-                'Нет обязательных фильтров товара (бренд и/или год)'));
-            $this->isValid = false;
-        }
-        return $this->isValid;
-    }
-
-    /**
-     * @return bool
-     */
     private function validateId1c(): bool
     {
         if (!$this->product->getId1c()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_ERROR, 'Не указан ID 1C'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Не указан ID 1C'));
             $this->isValid = false;
         }
         return $this->isValid;
@@ -163,7 +142,7 @@ class ProductValidator
     private function validateDescription(): bool
     {
         if (!$this->product->get_description()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_WARNING, 'Нет описания'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_WARNING, 'Нет описания'));
         }
         return $this->isValid;
     }
@@ -174,7 +153,7 @@ class ProductValidator
     private function validateTagLine(): bool
     {
         if (!$this->product->get_tag_line()) {
-            $this->addMessage(new ProductValidatorMessage(ProductValidatorMessage::TYPE_WARNING, 'Нет тэглайна'));
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_WARNING, 'Нет тэглайна'));
         }
         return $this->isValid;
     }
@@ -184,7 +163,12 @@ class ProductValidator
      */
     public function hasMissingCompulsoryFilters()
     {
-        $this->isValid =  (count($this->getMissingCompulsoryFilters()) !== 0);
+        if (count($this->getMissingCompulsoryFilters()) !== 0) {
+            $this->isValid = false;
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR,
+                'Нет обязательных фильтров товара (бренд и/или год)'));
+
+        }
         return $this->isValid;
     }
 
@@ -193,7 +177,13 @@ class ProductValidator
      */
     public function hasMissingSkuCompulsoryFilters()
     {
-        $this->isValid = (count($this->getMissingSkuCompulsoryFilters()) !== 0);
+
+        if (count($this->getMissingSkuCompulsoryFilters()) !== 0) {
+            $this->isValid = false;
+            $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_WARNING,
+                'Есть СКУ с незаполненными обязательными фильтрами'));
+
+        }
         return $this->isValid;
     }
 
@@ -300,8 +290,5 @@ class ProductValidator
     }
 
 
-    private function addMessage(ProductValidatorMessage $productValidatorMessage)
-    {
-        $this->messages[] = $productValidatorMessage;
-    }
+
 }
