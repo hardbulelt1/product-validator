@@ -7,11 +7,10 @@
 namespace Validator\Process\Price;
 
 
-use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
-class PriceProcess extends AbstractProcess implements ProcessInterface
+class PriceProcess implements ProcessInterface
 {
 
     /**

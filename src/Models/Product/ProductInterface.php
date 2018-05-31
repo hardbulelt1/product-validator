@@ -111,7 +111,7 @@ interface ProductInterface
      * @param $value
      * @return void
      */
-    public function setFeatureValue(string $key,$value);
+    public function setFeatureValue(string $key, $value);
 
     /**
      * @param int $total
@@ -201,4 +201,64 @@ interface ProductInterface
      * @return null|string
      */
     public function getFullName(): ?string;
+
+    /**
+     * @return int|null
+     */
+    public function getViewsCount(): ?int;
+
+    /**
+     * @return int|null
+     */
+    public function getCartCount(): ?int;
+
+    /**
+     * @return int|null
+     */
+    public function getStockWarehouse(): ?int;
+
+    /**
+     * @return int|null
+     */
+    public function getStockShop(): ?int;
+
+    /**
+     * @return mixed
+     */
+    public function getComments();
+
+    /**
+     * @return FeatureInterface[]
+     */
+    public function getFeatures();
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setSortPopularity($value);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setSortComments($value);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setSortPrice($value);
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setColorCountInStock($value);
+
+    /**
+     * @param $gender
+     * @return mixed
+     */
+    public function setGender($gender);
 }

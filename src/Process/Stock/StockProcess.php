@@ -6,12 +6,10 @@
 
 namespace Validator\Process\Stock;
 
-
-use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
-class StockProcess extends AbstractProcess implements ProcessInterface
+class StockProcess implements ProcessInterface
 {
     /**
      * @param ProductInterface $product

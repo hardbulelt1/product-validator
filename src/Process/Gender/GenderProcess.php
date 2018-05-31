@@ -12,7 +12,7 @@ use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 use Validator\Services\GenderService;
 
-class GenderProcess extends AbstractProcess implements ProcessInterface
+class GenderProcess implements ProcessInterface
 {
     /**
      * @param ProductInterface $product

@@ -20,21 +20,41 @@ use Validator\Process\Sorting\SortingProcess;
 use Validator\Process\Stature\StatureProcess;
 use Validator\Process\Stock\StockProcess;
 use Validator\Process\Tag\TagProcess;
+use Validator\Services\Contracts\Catalog\CatalogServiceContract;
+use Validator\Services\Contracts\Feature\FeatureServiceContract;
+use Validator\Services\Contracts\Series\SeriesServiceContract;
+use Validator\Services\Contracts\Tag\TagRulesServiceContract;
 
 class ProcessFactory
 {
     private $process = [];
     private $em;
+    private $catalogService;
+    private $featureService;
+    private $seriesService;
+    private $tagRulesService;
 
     /**
      * ProcessFactory constructor.
      * @param EntityManager $entityManager
+     * @param CatalogServiceContract $catalogServiceContract
+     * @param FeatureServiceContract $featureServiceContract
+     * @param SeriesServiceContract $seriesServiceContract
+     * @param TagRulesServiceContract $tagRulesServiceContract
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct
+    (
+        EntityManager $entityManager,
+        CatalogServiceContract $catalogServiceContract,
+        FeatureServiceContract $featureServiceContract,
+        SeriesServiceContract $seriesServiceContract,
+        TagRulesServiceContract $tagRulesServiceContract
+    )
     {
         $this->em = $entityManager;
         $this->process = new ArrayCollection();
     }
+
     /**
      * @param ProcessInterface $process
      */
@@ -75,7 +95,7 @@ class ProcessFactory
      */
     private function makeAdditionFilterProcess()
     {
-        $this->addProcess(new AdditionFilterProcess($this->em));
+        $this->addProcess(new AdditionFilterProcess());
     }
 
     /**
@@ -83,7 +103,7 @@ class ProcessFactory
      */
     private function makeAgeProcess()
     {
-        $this->addProcess(new AgeProcess($this->em));
+        $this->addProcess(new AgeProcess());
     }
 
     /**
@@ -99,7 +119,7 @@ class ProcessFactory
      */
     private function makeGenderProcess()
     {
-        $this->addProcess(new GenderProcess($this->em));
+        $this->addProcess(new GenderProcess());
     }
 
     /**
@@ -107,7 +127,7 @@ class ProcessFactory
      */
     private function makePriceProcess()
     {
-        $this->addProcess(new PriceProcess($this->em));
+        $this->addProcess(new PriceProcess());
     }
 
     /**
@@ -115,7 +135,7 @@ class ProcessFactory
      */
     private function makeSeriesProcess()
     {
-        $this->addProcess(new SeriesProcess($this->em));
+        $this->addProcess(new SeriesProcess($this->seriesService));
     }
 
     /**
@@ -123,7 +143,7 @@ class ProcessFactory
      */
     private function makeSortingProcess()
     {
-        $this->addProcess(new SortingProcess($this->em));
+        $this->addProcess(new SortingProcess($this->catalogService));
     }
 
     /**
@@ -131,7 +151,7 @@ class ProcessFactory
      */
     private function makeStatureProcess()
     {
-        $this->addProcess(new StatureProcess($this->em));
+        $this->addProcess(new StatureProcess());
     }
 
     /**
@@ -139,7 +159,7 @@ class ProcessFactory
      */
     private function makeStockProcess()
     {
-        $this->addProcess(new StockProcess($this->em));
+        $this->addProcess(new StockProcess());
     }
 
     /**
@@ -147,7 +167,7 @@ class ProcessFactory
      */
     private function makeTagProcess()
     {
-        $this->addProcess(new TagProcess($this->em));
+        $this->addProcess(new TagProcess($this->em, $this - $this->featureService, $this->tagRulesService));
     }
 
 

@@ -5,24 +5,39 @@
  */
 namespace Validator\Process\Tag;
 
-use Validator\Process\AbstractProcess;
+use Doctrine\ORM\EntityManager;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
-use Validator\Services\FeatureService;
+use Validator\Services\Contracts\Feature\FeatureServiceContract;
+use Validator\Services\Contracts\Tag\TagRulesServiceContract;
 use Validator\Services\ProductTagger;
-use Validator\Services\TagRulesService;
 
-class TagProcess extends AbstractProcess implements ProcessInterface
+class TagProcess  implements ProcessInterface
 {
+    private $em;
+    private $featureService;
+    private $tagRulesService;
+
+    /**
+     * TagProcess constructor.
+     * @param EntityManager $entityManager
+     * @param FeatureServiceContract $featureServiceContract
+     * @param TagRulesServiceContract $tagRulesServiceContract
+     */
+    public function __construct(EntityManager $entityManager,FeatureServiceContract $featureServiceContract,TagRulesServiceContract $tagRulesServiceContract)
+    {
+        $this->em = $entityManager;
+        $this->featureService = $featureServiceContract;
+        $this->tagRulesService = $tagRulesServiceContract;
+    }
+
     /**
      * @param ProductInterface $product
      */
     public function run(ProductInterface $product)
     {
-        $tagRulesService = new TagRulesService($this->em);
-        $tagRules = $tagRulesService->getAll();
-        $featureService = new FeatureService($this->em);
-        $productTagger = new ProductTagger($product, $tagRules,$featureService);
+        $tagRules = $this->tagRulesService->findAll();
+        $productTagger = new ProductTagger($product, $tagRules,$this->featureService);
         $tags = $productTagger->getTags();
         if ($product->hasFeature('tag')) {
             $product->deleteFeature('tag');

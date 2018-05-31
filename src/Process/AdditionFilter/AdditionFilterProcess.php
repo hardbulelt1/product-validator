@@ -10,7 +10,7 @@ use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
-class AdditionFilterProcess extends AbstractProcess implements ProcessInterface
+class AdditionFilterProcess  implements ProcessInterface
 {
 
     /**

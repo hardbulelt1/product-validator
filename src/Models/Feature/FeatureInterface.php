@@ -27,4 +27,14 @@ interface FeatureInterface
      * @return String
      */
     public function getData($key): ?string;
+
+    /**
+     * @return null|string
+     */
+    public function getFeatureCode(): ?string;
+
+    /**
+     * @return mixed
+     */
+    public function getValues();
 }

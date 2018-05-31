@@ -9,6 +9,7 @@ namespace Validator\Services;
 
 use Validator\Models\Product\ProductInterface;
 use Validator\Models\TagRules\TagRulesInterface;
+use Validator\Services\Contracts\Feature\FeatureServiceContract;
 
 class ProductTagger
 {
@@ -16,7 +17,7 @@ class ProductTagger
     private $tagRules;
     private $featureService;
 
-    public function __construct(ProductInterface $product, array $tagRules, FeatureService $featureService)
+    public function __construct(ProductInterface $product, array $tagRules, FeatureServiceContract $featureService)
     {
         $this->product = $product;
         $this->tagRules = $tagRules;

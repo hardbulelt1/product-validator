@@ -8,15 +8,21 @@ use Validator\Process\Factory\ProcessFactory;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
-class ProductProcess extends AbstractProcess implements ProcessInterface
+class ProductProcess  implements ProcessInterface
 {
+    private $processFactory;
+
+    public function __construct(ProcessFactory $factory)
+    {
+        $this->processFactory = $factory;
+    }
+
     /**
      * @param ProductInterface $product
      */
     public function run(ProductInterface $product)
     {
-         $processFactory = new ProcessFactory($this->em);
-         $processes = $processFactory->make()->getProcess();
+         $processes = $this->processFactory->make()->getProcess();
          foreach ($processes as $process) {
              $process->run($product);
          }

@@ -6,47 +6,34 @@
 
 namespace Validator\Process\Series;
 
-
-use Validator\Models\Series\SeriesInterface;
-use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
+use Validator\Services\Contracts\Series\SeriesServiceContract;
 
-class SeriesProcess extends AbstractProcess implements ProcessInterface
+class SeriesProcess implements ProcessInterface
 {
+    private $series;
+
+    /**
+     * SeriesProcess constructor.
+     * @param SeriesServiceContract $series
+     */
+    public function __construct(SeriesServiceContract $series)
+    {
+        $this->series = $series;
+    }
+
     /**
      * @param ProductInterface $product
      */
     public function run(ProductInterface $product)
     {
 
-        $seriesCode = $this->getSeries($product);
+        $seriesCode = $this->series->getSeries($product);
         if ($seriesCode === false) {
             $product->deleteFeature('series');
         } else {
             $product->setFeatureValue('series', $seriesCode);
         }
-    }
-
-    /**
-     * @param ProductInterface $product
-     * @return bool
-     */
-    private function getSeries(ProductInterface $product)
-    {
-        $brand = $product->getBrand();
-        $brandSeries = $brand->getSeries();
-        foreach ($brandSeries as $seriesCode) {
-            /** @var SeriesInterface $series */
-            $series = $this->em->getRepository(SeriesInterface::class)->findBy(['code' => $seriesCode]);
-            if (!is_null($series)) {
-                if (strpos(mb_strtolower($product->getFullName(), 'UTF-8'),
-                    mb_strtolower($series->getRule(), 'UTF-8'))) {
-                    return $seriesCode;
-                }
-            }
-        }
-
-        return false;
     }
 }

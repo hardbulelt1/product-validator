@@ -7,12 +7,23 @@
 namespace Validator\Process\Counters;
 
 
-use Validator\Process\AbstractProcess;
+use Doctrine\ORM\EntityManager;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
-class CountersProcess extends AbstractProcess implements ProcessInterface
+class CountersProcess  implements ProcessInterface
 {
+    private $em;
+
+    /**
+     * CountersProcess constructor.
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
+    }
+
     /**
      * @param ProductInterface $product
      */

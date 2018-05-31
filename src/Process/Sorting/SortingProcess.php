@@ -5,63 +5,65 @@
  */
 
 namespace Validator\Process\Sorting;
-
-
-use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
+use Validator\Services\Contracts\Series\CatalogContract;
 
-class SortingProcess extends AbstractProcess implements ProcessInterface
+class SortingProcess  implements ProcessInterface
 {
+    private $catalog;
+
+    public function __construct(CatalogContract $catalog)
+    {
+        $this->catalog = $catalog;
+    }
 
     public function run(ProductInterface $product)
     {
-//        $catalog = new Catalog();
-//
-//        $maxStock = $catalog->getMaxStock();
-//        $maxViews = $catalog->getMaxViews();
-//        $maxCart = $catalog->getMaxCart();
-//        $maxComments = $catalog->getMaxComments();
-//        $maxPrice = $catalog->getMaxPrice();
-//        if (count($this->product->get_categories()) > 0) {
-//            $maxOwnStockInCategory = $catalog->getMaxOwnStockPerCategory($this->product->getCanonicalCategory()->getId());
-//        } else {
-//            $maxOwnStockInCategory = $catalog->getMaxOwnStock();
-//        }
-//
-//        $basicSortWeight = 0;
-//        $basicSortWeight += $this->product->stockTotal / $maxStock * .0;
-//        $basicSortWeight += $this->product->viewsCount / $maxViews * .15;
-//        $basicSortWeight += $this->product->cartCount / $maxCart * .35;
-//        if ($maxOwnStockInCategory > 0) {
-//            $basicSortWeight += ($this->product->stockWarehouse + $this->product->stockShop) / $maxOwnStockInCategory * .5;
-//        }
-//
-//        $sortPopularity = $basicSortWeight;
-//        $sortComments = count($this->product->comments) / $maxComments;
-//        $sortPrice = $this->product->priceCurrent / $maxPrice;
-//
-//        $colors = [];
-//        foreach ($this->product->sku as $sku) {
-//            $colorId = $sku->getColorId();
-//            if ($colorId >= 0 && $sku->getTotalStock() > 0 && !in_array($colorId, $colors)) {
-//                $colors[] = $colorId;
-//            }
-//        }
-//        $colorCount = count($colors);
-//
-//        $gender = null;
-//        foreach ($this->product->features as $feature) {
-//            if ($feature->featureCode == 'gender') {
-//                $gender = $feature->values[0]->valueInteger;
-//                break;
-//            }
-//        }
-//
-//        $this->product->sortPopularity = $sortPopularity;
-//        $this->product->sortComments = $sortComments;
-//        $this->product->sortPrice = $sortPrice;
-//        $this->product->setColorCountInStock($colorCount);
-//        $this->product->setGender($gender);
+        $maxStock = $this->catalog->getMaxStock();
+        $maxViews = $this->catalog->getMaxViews();
+        $maxCart = $this->catalog->getMaxCart();
+        $maxComments = $this->catalog->getMaxComments();
+        $maxPrice = $this->catalog->getMaxPrice();
+        if (count($product->get_categories()) > 0) {
+            $maxOwnStockInCategory = $this->catalog->getMaxOwnStockPerCategory($product->getCanonicalCategory()->getId());
+        } else {
+            $maxOwnStockInCategory = $this->catalog->getMaxOwnStock();
+        }
+
+        $basicSortWeight = 0;
+        $basicSortWeight += $product->getStockTotal() / $maxStock * .0;
+        $basicSortWeight += $product->getViewsCount() / $maxViews * .15;
+        $basicSortWeight += $product->getCartCount() / $maxCart * .35;
+        if ($maxOwnStockInCategory > 0) {
+            $basicSortWeight += ($product->getStockWarehouse() + $product->getStockShop()) / $maxOwnStockInCategory * .5;
+        }
+
+        $sortPopularity = $basicSortWeight;
+        $sortComments = count($product->getComments()) / $maxComments;
+        $sortPrice = $product->getPriceCurrent() / $maxPrice;
+
+        $colors = [];
+        foreach ($product->getSku() as $sku) {
+            $colorId = $sku->getColorId();
+            if ($colorId >= 0 && $sku->getTotalStock() > 0 && !in_array($colorId, $colors)) {
+                $colors[] = $colorId;
+            }
+        }
+        $colorCount = count($colors);
+
+        $gender = null;
+        foreach ($product->getFeatures() as $feature) {
+            if ($feature->getFeatureCode() == 'gender') {
+                $gender = $feature->getValues()[0]->valueInteger;
+                break;
+            }
+        }
+
+        $product->setSortPopularity($sortPopularity);
+        $product->setSortComments($sortComments);
+        $product->setSortPrice($sortPrice);
+        $product->setColorCountInStock($colorCount);
+        $product->setGender($gender);
     }
 }
