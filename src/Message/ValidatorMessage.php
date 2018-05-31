@@ -12,6 +12,9 @@ class ValidatorMessage
     const TYPE_INFO = 'info';
     const TYPE_ERROR = 'error';
     const TYPE_WARNING = 'warning';
+
+
+
     private $type = '';
     private $text = '';
 
