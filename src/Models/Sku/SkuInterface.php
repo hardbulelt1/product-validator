@@ -6,7 +6,7 @@
 namespace Validator\Models\Sku;
 
 use Validator\Models\Feature\FeatureInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 interface SkuInterface
 {

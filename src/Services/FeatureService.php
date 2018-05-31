@@ -21,7 +21,7 @@ class FeatureService
 
     /**
      * @param $code
-     * @return FeatureInterface
+     * @return FeatureInterface[]
      */
     public function getByCode($code)
     {
