@@ -6,6 +6,7 @@
 namespace Validator\Validator;
 use Validator\Product\Message\ValidatorMessage;
 use Validator\Product\ProductInterface;
+use Validator\Sku\SkuValidator;
 
 
 class ProductValidator extends Validator
@@ -159,7 +160,7 @@ class ProductValidator extends Validator
     /**
      * @return bool
      */
-    public function hasMissingCompulsoryFilters()
+    public function hasMissingCompulsoryFilters(): bool
     {
         if (count($this->getMissingCompulsoryFilters()) !== 0) {
             $this->isValid = false;
@@ -173,7 +174,7 @@ class ProductValidator extends Validator
     /**
      * @return bool
      */
-    public function hasMissingSkuCompulsoryFilters()
+    public function hasMissingSkuCompulsoryFilters(): bool
     {
 
         if (count($this->getMissingSkuCompulsoryFilters()) !== 0) {
@@ -260,8 +261,10 @@ class ProductValidator extends Validator
         return $missingCompulsoryFilters;
     }
 
-
-    public function getMissingCompulsoryFilters()
+    /**
+     * @return array
+     */
+    public function getMissingCompulsoryFilters(): array
     {
         $missingCompulsoryFilters = [];
         if (!$this->product->hasFeature('brand')) {
@@ -274,17 +277,17 @@ class ProductValidator extends Validator
         return $missingCompulsoryFilters;
     }
 
-    public function hasNoValidSku()
+    /**
+     * @return bool
+     */
+    public function hasNoValidSku(): bool
     {
-        $hasValidSku = false;
         foreach ($this->product->getSku() as $sku) {
-            if ($sku->isValid()) {
-                $hasValidSku = true;
-                break;
+            if((new SkuValidator($sku))->validate()) {
+                return true;
             }
         }
-
-        return !$hasValidSku;
+        return false;
     }
 
 

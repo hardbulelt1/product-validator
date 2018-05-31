@@ -14,11 +14,13 @@ class ProductTagger
 {
     private $product;
     private $tagRules;
+    private $featureService;
 
-    public function __construct(ProductInterface $product, array $tagRules)
+    public function __construct(ProductInterface $product, array $tagRules, FeatureService $featureService)
     {
         $this->product = $product;
         $this->tagRules = $tagRules;
+        $this->featureService = $featureService;
     }
 
     /**
@@ -53,7 +55,6 @@ class ProductTagger
      */
     private function productFitsRule(TagRulesInterface $tagRule)
     {
-        $featureService = new FeatureService();
         $data = $tagRule->getData();
         if (count($data) === 0) {
             return false;
@@ -77,8 +78,8 @@ class ProductTagger
                     return false;
                 }
             }
-            if ($featureService->isExist($key)) {
-                $feature = $featureService->getByCode($key);
+            $feature = $this->featureService->getByCode($key);
+            if ($feature) {
                 if ($feature->getIsForProduct()) {
                     if (!$this->product->hasFeature($key)) {
                         return false;

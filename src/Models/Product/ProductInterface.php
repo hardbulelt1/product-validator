@@ -8,6 +8,7 @@ namespace Validator\Product;
 
 use Validator\Category\CategoryInterface;
 use Validator\Feature\FeatureInterface;
+use Validator\Models\BrandInterface;
 use Validator\Sku\SkuInterface;
 
 interface ProductInterface
@@ -104,16 +105,40 @@ interface ProductInterface
      */
     public function isKickScooter(): bool;
 
-    public function setFeatureValue($key,$value);
+    /**
+     * @param string $key
+     * @param $value
+     * @return void
+     */
+    public function setFeatureValue(string $key,$value);
 
-    public function setStockTotal($total);
+    /**
+     * @param int $total
+     * @return void
+     */
+    public function setStockTotal(int $total);
 
-    public function getStockTotal();
+    /**
+     * @return int|null
+     */
+    public function getStockTotal(): ?int;
 
-    public function setPriceCurrent($price);
+    /**
+     * @param int $price
+     * @return void
+     */
+    public function setPriceCurrent(int $price);
 
-    public function setPriceOld($price);
-    public function getPriceOld();
+    /**
+     * @param int $price
+     * @return void
+     */
+    public function setPriceOld(int $price);
+
+    /**
+     * @return int|null
+     */
+    public function getPriceOld(): ?int;
 
     /**
      * @param $key
@@ -121,15 +146,58 @@ interface ProductInterface
      */
     public function getFeature($key);
 
+    /**
+     * @param $value
+     * @return void
+     */
     public function setHasPreOrder($value);
 
-    public function getId();
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int;
 
+    /**
+     * @param $valid
+     * @return void
+     */
     public function setAdditionalFilterValid($valid);
 
-    public function deleteFeature($key);
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function deleteFeature(string $key);
 
-    public function setCartCount($count);
+    /**
+     * @param int $count
+     * @return void
+     */
+    public function setCartCount(int $count);
 
-    public function setViewsCount($count);
+    /**
+     * @param int $count
+     * @return void
+     */
+    public function setViewsCount(int $count);
+
+    /**
+     * @return bool
+     */
+    public function is_for_children(): bool;
+
+    /**
+     * @return CategoryInterface
+     */
+    public function getCanonicalCategory(): CategoryInterface;
+
+    /**
+     * @return BrandInterface
+     */
+    public function getBrand(): BrandInterface;
+
+    /**
+     * @return null|string
+     */
+    public function getFullName(): ?string;
 }

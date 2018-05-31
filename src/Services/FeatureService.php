@@ -7,13 +7,16 @@
 namespace Validator\Services;
 
 
+use Doctrine\ORM\EntityManager;
 use Validator\Feature\FeatureInterface;
 
 class FeatureService
 {
-    public function isExist($key): bool
-    {
+    private $em;
 
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
     }
 
     /**
@@ -22,6 +25,6 @@ class FeatureService
      */
     public function getByCode($code)
     {
-
+        return $this->em->getRepository(FeatureInterface::class)->findBy(['code' => $code]);
     }
 }

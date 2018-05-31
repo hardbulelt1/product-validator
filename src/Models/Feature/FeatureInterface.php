@@ -7,9 +7,24 @@ namespace Validator\Feature;
 
 interface FeatureInterface
 {
-    public function getValue();
+    /**
+     * @return String
+     */
+    public function getValue(): ?string;
 
-    public function getIsForProduct();
+    /**
+     * @return bool|null
+     */
+    public function getIsForProduct(): bool;
 
-    public function getIsForSku();
+    /**
+     * @return bool
+     */
+    public function getIsForSku(): bool;
+
+    /**
+     * @param $key
+     * @return String
+     */
+    public function getData($key): ?string;
 }

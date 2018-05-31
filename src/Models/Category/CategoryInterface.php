@@ -13,4 +13,9 @@ interface CategoryInterface
     const KICK_SCOOTERS_ID = 113;
     const GIFT_CARDS_ID = 114;
     const SERVICES_ID = 115;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int;
 }

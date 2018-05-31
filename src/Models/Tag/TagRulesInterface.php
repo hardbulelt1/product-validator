@@ -7,5 +7,8 @@ namespace Validator\TagRules;
 
 interface TagRulesInterface
 {
+    /**
+     * @return mixed
+     */
     public function getData();
 }

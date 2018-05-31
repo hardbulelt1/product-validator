@@ -34,6 +34,8 @@ class SkuValidator extends Validator
         }
 
         $this->sku->setValid($this->is_valid);
+
+        return $this->is_valid;
     }
 
 }
