@@ -3,7 +3,7 @@
  * Class TagRulesInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Models\TagRules;
+namespace Validator\Models\Tag;
 
 interface TagRulesInterface
 {
@@ -11,4 +11,9 @@ interface TagRulesInterface
      * @return mixed
      */
     public function getData();
+
+    /**
+     * @return mixed
+     */
+    public function getTagId();
 }

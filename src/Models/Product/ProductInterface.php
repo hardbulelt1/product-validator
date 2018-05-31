@@ -145,7 +145,7 @@ interface ProductInterface
 
     /**
      * @param $key
-     * @return FeatureInterface
+     * @return ProductFeatureInterface
      */
     public function getFeature($key);
 
@@ -263,4 +263,5 @@ interface ProductInterface
      * @return mixed
      */
     public function setGender($gender);
+
 }

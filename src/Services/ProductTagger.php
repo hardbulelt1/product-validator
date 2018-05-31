@@ -8,7 +8,7 @@ namespace Validator\Services;
 
 
 use Validator\Models\Product\ProductInterface;
-use Validator\Models\TagRules\TagRulesInterface;
+use Validator\Models\Tag\TagRulesInterface;
 use Validator\Services\Contracts\Feature\FeatureServiceContract;
 
 class ProductTagger
@@ -17,7 +17,13 @@ class ProductTagger
     private $tagRules;
     private $featureService;
 
-    public function __construct(ProductInterface $product, array $tagRules, FeatureServiceContract $featureService)
+    /**
+     * ProductTagger constructor.
+     * @param ProductInterface $product
+     * @param TagRulesInterface[] $tagRules
+     * @param FeatureServiceContract $featureService
+     */
+    public function __construct(ProductInterface $product, $tagRules, FeatureServiceContract $featureService)
     {
         $this->product = $product;
         $this->tagRules = $tagRules;
@@ -80,7 +86,8 @@ class ProductTagger
                 }
             }
             $feature = $this->featureService->getByCode($key);
-            if ($feature) {
+            if (isset($feature)) {
+                $feature = $feature[0];
                 if ($feature->getIsForProduct()) {
                     if (!$this->product->hasFeature($key)) {
                         return false;

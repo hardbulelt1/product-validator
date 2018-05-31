@@ -18,4 +18,11 @@ interface ProductFeatureInterface
      * @return mixed
      */
     public function getValues();
+
+    /**
+     * @param $key
+     * @return String
+     */
+    public function getData($key);
+
 }

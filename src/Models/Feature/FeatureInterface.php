@@ -10,7 +10,7 @@ interface FeatureInterface
     /**
      * @return String
      */
-    public function getValue(): ?string;
+    public function getValue();
 
     /**
      * @return bool|null
@@ -21,15 +21,4 @@ interface FeatureInterface
      * @return bool
      */
     public function getIsForSku(): bool;
-
-    /**
-     * @param $key
-     * @return String
-     */
-    public function getData($key): ?string;
-
-    /**
-     * @return null|string
-     */
-    public function getFeatureCode(): ?string;
 }
