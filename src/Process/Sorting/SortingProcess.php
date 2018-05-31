@@ -7,13 +7,14 @@
 namespace Validator\Process\Sorting;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
-use Validator\Services\Contracts\Series\CatalogContract;
+use Validator\Services\Contracts\Catalog\CatalogServiceContract;
+
 
 class SortingProcess  implements ProcessInterface
 {
     private $catalog;
 
-    public function __construct(CatalogContract $catalog)
+    public function __construct(CatalogServiceContract $catalog)
     {
         $this->catalog = $catalog;
     }

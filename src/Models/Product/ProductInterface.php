@@ -9,6 +9,8 @@ namespace Validator\Models\Product;
 use Validator\Models\Category\CategoryInterface;
 use Validator\Models\Feature\FeatureInterface;
 use Validator\Models\Brand\BrandInterface;
+use Validator\Models\Feature\ProductFeature;
+use Validator\Models\Feature\ProductFeatureInterface;
 use Validator\Models\Sku\SkuInterface;
 
 interface ProductInterface
@@ -228,7 +230,7 @@ interface ProductInterface
     public function getComments();
 
     /**
-     * @return FeatureInterface[]
+     * @return ProductFeatureInterface[]
      */
     public function getFeatures();
 

@@ -52,6 +52,10 @@ class ProcessFactory
     )
     {
         $this->em = $entityManager;
+        $this->seriesService = $seriesServiceContract;
+        $this->catalogService = $catalogServiceContract;
+        $this->featureService = $featureServiceContract;
+        $this->tagRulesService = $tagRulesServiceContract;
         $this->process = new ArrayCollection();
     }
 
@@ -95,7 +99,7 @@ class ProcessFactory
      */
     private function makeAdditionFilterProcess()
     {
-        $this->addProcess(new AdditionFilterProcess());
+        $this->addProcess(new AdditionFilterProcess($this->em));
     }
 
     /**
@@ -167,7 +171,7 @@ class ProcessFactory
      */
     private function makeTagProcess()
     {
-        $this->addProcess(new TagProcess($this->em, $this - $this->featureService, $this->tagRulesService));
+        $this->addProcess(new TagProcess($this->em,$this->featureService, $this->tagRulesService));
     }
 
 

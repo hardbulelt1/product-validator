@@ -6,12 +6,23 @@
 
 namespace Validator\Process\AdditionFilter;
 
+use Doctrine\ORM\EntityManager;
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 
 class AdditionFilterProcess  implements ProcessInterface
 {
+    private $em;
+
+    /**
+     * AdditionFilterProcess constructor.
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
+    }
 
     /**
      * @param ProductInterface $product

@@ -32,9 +32,4 @@ interface FeatureInterface
      * @return null|string
      */
     public function getFeatureCode(): ?string;
-
-    /**
-     * @return mixed
-     */
-    public function getValues();
 }

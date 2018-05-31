@@ -12,7 +12,7 @@ use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 use Validator\Services\StatureService;
 
-class StatureProcess extends AbstractProcess implements ProcessInterface
+class StatureProcess  implements ProcessInterface
 {
     /**
      * @param ProductInterface $product
