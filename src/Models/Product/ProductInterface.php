@@ -25,7 +25,7 @@ interface ProductInterface
     /**
      * @return SkuInterface[]|null
      */
-    public function getSku(): ?array;
+    public function getSku();
 
     /**
      * @return null|String
