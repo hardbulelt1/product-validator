@@ -12,6 +12,7 @@ use Validator\Models\Product\ProductInterface;
 class AgeService
 {
 
+
     /** @var ProductInterface $product */
     private $product;
 
