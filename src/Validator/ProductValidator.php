@@ -4,7 +4,7 @@
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
 namespace Validator\Validator;
-use Validator\Product\Message\ValidatorMessage;
+use Validator\Message\ValidatorMessage;
 use Validator\Models\Product\ProductInterface;
 use Validator\Sku\SkuValidator;
 

@@ -8,11 +8,12 @@ namespace Validator\Models\Product;
 
 use Validator\Models\Category\CategoryInterface;
 use Validator\Models\Feature\FeatureInterface;
-use Validator\Models\BrandInterface;
+use Validator\Models\Brand\BrandInterface;
 use Validator\Models\Sku\SkuInterface;
 
 interface ProductInterface
 {
+    const TYPE = 'products';
     const TYPE_BIKE = 'bike';
     const TYPE_KICK_SCOOTER = 'kickScooter';
     const TYPE_ACCESSORY = 'accessory';

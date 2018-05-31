@@ -5,7 +5,9 @@
  */
 namespace Validator\Validator;
 
-use Validator\Product\Message\ValidatorMessage;
+
+
+use Validator\Message\ValidatorMessage;
 
 abstract class Validator
 {
