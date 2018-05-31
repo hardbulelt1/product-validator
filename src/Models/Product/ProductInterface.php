@@ -4,12 +4,12 @@
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
 
-namespace Validator\Product;
+namespace Validator\Models\Product;
 
-use Validator\Category\CategoryInterface;
-use Validator\Feature\FeatureInterface;
+use Validator\Models\Category\CategoryInterface;
+use Validator\Models\Feature\FeatureInterface;
 use Validator\Models\BrandInterface;
-use Validator\Sku\SkuInterface;
+use Validator\Models\Sku\SkuInterface;
 
 interface ProductInterface
 {

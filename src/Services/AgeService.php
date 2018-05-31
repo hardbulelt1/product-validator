@@ -7,7 +7,7 @@
 namespace Validator\Services;
 
 
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class AgeService
 {

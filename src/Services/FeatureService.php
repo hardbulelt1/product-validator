@@ -8,7 +8,7 @@ namespace Validator\Services;
 
 
 use Doctrine\ORM\EntityManager;
-use Validator\Feature\FeatureInterface;
+use Validator\Models\Feature\FeatureInterface;
 
 class FeatureService
 {

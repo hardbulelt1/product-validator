@@ -7,8 +7,8 @@
 namespace Validator\Services;
 
 
-use Validator\Product\ProductInterface;
-use Validator\Sku\SkuInterface;
+use Validator\Models\Product\ProductInterface;
+use Validator\Models\Sku\SkuInterface;
 
 class StatureService
 {

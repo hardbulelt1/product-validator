@@ -9,7 +9,7 @@ namespace Validator\Process\Sorting;
 
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class SortingProcess extends AbstractProcess implements ProcessInterface
 {

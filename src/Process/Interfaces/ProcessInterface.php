@@ -5,9 +5,9 @@
  */
 namespace Validator\Process\Interfaces;
 
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 interface ProcessInterface
 {
-    public function run(ProductInterface $product);
+    public function run(ProductInterface $pro);
 }

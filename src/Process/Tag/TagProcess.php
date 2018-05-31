@@ -7,7 +7,7 @@ namespace Validator\Process\Tag;
 
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 use Validator\Services\FeatureService;
 use Validator\Services\ProductTagger;
 use Validator\Services\TagRulesService;

@@ -8,7 +8,7 @@ namespace Validator\Services;
 
 
 use Doctrine\ORM\EntityManager;
-use Validator\TagRules\TagRulesInterface;
+use Validator\Models\TagRules\TagRulesInterface;
 
 class TagRulesService
 {

@@ -3,7 +3,7 @@
  * Class FeatureInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Feature;
+namespace Validator\Models\Feature;
 
 interface FeatureInterface
 {

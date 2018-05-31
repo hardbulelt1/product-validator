@@ -3,9 +3,9 @@
  * Class SkuInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Sku;
+namespace Validator\Models\Sku;
 
-use Validator\Feature\FeatureInterface;
+use Validator\Models\Feature\FeatureInterface;
 use Validator\Product\ProductInterface;
 
 interface SkuInterface

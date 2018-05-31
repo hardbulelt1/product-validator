@@ -8,7 +8,7 @@ namespace Validator\Services;
 
 
 use Validator\Product\ProductInterface;
-use Validator\TagRules\TagRulesInterface;
+use Validator\Models\TagRules\TagRulesInterface;
 
 class ProductTagger
 {

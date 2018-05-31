@@ -10,7 +10,7 @@ namespace Validator\Process\Series;
 use Validator\Models\Series\SeriesInterface;
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class SeriesProcess extends AbstractProcess implements ProcessInterface
 {

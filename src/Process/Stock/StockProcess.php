@@ -9,7 +9,7 @@ namespace Validator\Process\Stock;
 
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class StockProcess extends AbstractProcess implements ProcessInterface
 {

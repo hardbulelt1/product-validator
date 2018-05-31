@@ -9,7 +9,7 @@ namespace Validator\Process\Counters;
 
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class CountersProcess extends AbstractProcess implements ProcessInterface
 {

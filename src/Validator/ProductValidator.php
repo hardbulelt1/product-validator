@@ -5,7 +5,7 @@
  */
 namespace Validator\Validator;
 use Validator\Product\Message\ValidatorMessage;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 use Validator\Sku\SkuValidator;
 
 

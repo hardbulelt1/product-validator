@@ -3,7 +3,7 @@
  * Class CategoryInterface
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Category;
+namespace Validator\Models\Category;
 
 interface CategoryInterface
 {

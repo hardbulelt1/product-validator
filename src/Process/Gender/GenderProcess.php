@@ -9,7 +9,7 @@ namespace Validator\Process\Gender;
 
 use Validator\Process\AbstractProcess;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 use Validator\Services\GenderService;
 
 class GenderProcess extends AbstractProcess implements ProcessInterface

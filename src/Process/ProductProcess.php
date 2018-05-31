@@ -6,7 +6,7 @@
 namespace Validator\Process;
 use Validator\Process\Factory\ProcessFactory;
 use Validator\Process\Interfaces\ProcessInterface;
-use Validator\Product\ProductInterface;
+use Validator\Models\Product\ProductInterface;
 
 class ProductProcess extends AbstractProcess implements ProcessInterface
 {
