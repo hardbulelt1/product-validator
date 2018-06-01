@@ -14,7 +14,7 @@ use Validator\Validator\Validator;
 
 class TagLineValidator extends Validator implements ProductValidatorContract
 {
-    protected $required;
+    protected $required = false;
 
     /**
      * @param ProductInterface $product
