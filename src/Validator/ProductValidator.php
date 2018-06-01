@@ -5,7 +5,7 @@
  */
 namespace Validator\Validator;
 use Validator\Models\Product\ProductInterface;
-use Validator\Validator\ContractsProduct\ProductValidatorContract;
+use Validator\Validator\Contracts\Product\ProductValidatorContract;
 use Validator\Validator\Factory\ProductValidatorFactory;
 
 

@@ -3,7 +3,7 @@
  * Class ProductValidatorContract
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
-namespace Validator\Validator\ContractsProduct;
+namespace Validator\Validator\Contracts\Product;
 
 use Validator\Message\ValidatorMessage;
 use Validator\Models\Product\ProductInterface;
