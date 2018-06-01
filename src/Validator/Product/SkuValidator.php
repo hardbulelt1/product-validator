@@ -39,9 +39,14 @@ class SkuValidator extends Validator implements ProductValidatorContract
 
     private function hasValidSku(ProductInterface $product)
     {
+        $skuValidator = new MainSkuValidator();
         foreach ($product->getSku() as $sku) {
-            if((new MainSkuValidator())->validate($sku)) {
+            if ($skuValidator->validate($sku)) {
                 return true;
+            } else {
+                foreach ($skuValidator->getMessages() as $message) {
+                    $this->addMessage($message);
+                }
             }
         }
         return false;
