@@ -12,6 +12,23 @@ use Validator\Message\ValidatorMessage;
 abstract class Validator
 {
     protected $messages = [];
+    protected $required = true;
+
+    /**
+     * @return bool
+     */
+    public function isRequired(): bool
+    {
+        return $this->required;
+    }
+
+    /**
+     * @param bool $required
+     */
+    public function setRequired(bool $required)
+    {
+        $this->required = $required;
+    }
 
     /**
      * @return ValidatorMessage[]

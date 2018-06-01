@@ -22,7 +22,7 @@ class SkuValidator extends Validator implements SkuValidatorContract
         $skuFactory = new SkuValidatorFactory();
         $skuFactory->make();
         foreach ($skuFactory->getValidators() as $validator) {
-            if ($validator->validate($sku) === false) {
+            if ($validator->validate($sku) === false && ($validator->isRequired())) {
                 $is_validate = false;
             }
             foreach ($validator->getMessages() as $message) {

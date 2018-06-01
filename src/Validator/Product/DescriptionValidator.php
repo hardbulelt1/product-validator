@@ -14,6 +14,7 @@ use Validator\Validator\Validator;
 
 class DescriptionValidator extends Validator implements ProductValidatorContract
 {
+    protected $required = false;
 
     /**
      * @param ProductInterface $product

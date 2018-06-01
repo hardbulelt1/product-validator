@@ -7,7 +7,8 @@
 namespace Validator\Services\Contracts\Tag;
 
 
-use Validator\Models\TagRules\TagRulesInterface;
+
+use Validator\Models\Tag\TagRulesInterface;
 
 interface TagRulesServiceContract
 {

@@ -22,4 +22,15 @@ interface SkuValidatorContract
      */
     public function getMessages(): array;
 
+    /**
+     * @return bool
+     */
+    public function isRequired(): bool;
+
+    /**
+     * @param bool $required
+     * @return mixed
+     */
+    public function setRequired(bool $required);
+
 }

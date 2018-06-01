@@ -55,7 +55,7 @@ class ProductValidator extends Validator implements ProductValidatorContract
         $productFactory = new ProductValidatorFactory();
         $productFactory->make();
         foreach ($productFactory->getValidators() as $validator) {
-            if ($validator->validate($product) === false) {
+            if ($validator->validate($product) === false && ($validator->isRequired())) {
                 $is_validate = false;
             }
             foreach ($validator->getMessages() as $message) {

@@ -14,6 +14,7 @@ use Validator\Validator\Validator;
 
 class CompulsoryFiltersValidator extends Validator implements SkuValidatorContract
 {
+    protected $required = false;
 
     /**
      * @param SkuInterface $sku
