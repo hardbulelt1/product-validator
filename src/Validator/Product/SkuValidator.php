@@ -27,7 +27,7 @@ class SkuValidator extends Validator implements ProductValidatorContract
             $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR, 'Нет ни одного СКУ'));
             $valid = false;
         }
-        if ($this->hasValidSku($product)) {
+        if (!$this->hasValidSku($product)) {
             $this->addMessage(new ValidatorMessage(ValidatorMessage::TYPE_ERROR,
                 'Нет ни одного валидного СКУ (с ценой и всеми фильтрами)'));
             $valid = false;

@@ -56,7 +56,7 @@ class SortingProcess  implements ProcessInterface
         $gender = null;
         foreach ($product->getFeatures() as $feature) {
             if ($feature->getFeatureCode() == 'gender') {
-                $gender = $feature->getValues()[0]->valueInteger;
+                $gender = $feature->getValues()[0]->valueInteger ?? null;
                 break;
             }
         }
