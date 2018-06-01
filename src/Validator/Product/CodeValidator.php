@@ -9,7 +9,7 @@ namespace Validator\Validator\Product;
 
 use Validator\Message\ValidatorMessage;
 use Validator\Models\Product\ProductInterface;
-use Validator\Validator\Product\Contracts\ProductValidatorContract;
+use Validator\Validator\ContractsProduct\ProductValidatorContract;
 use Validator\Validator\Validator;
 
 class CodeValidator extends Validator implements ProductValidatorContract

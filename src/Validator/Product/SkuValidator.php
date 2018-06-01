@@ -9,8 +9,9 @@ namespace Validator\Validator\Product;
 
 use Validator\Message\ValidatorMessage;
 use Validator\Models\Product\ProductInterface;
-use Validator\Validator\Product\Contracts\ProductValidatorContract;
+use Validator\Validator\ContractsProduct\ProductValidatorContract;
 use Validator\Validator\Validator;
+use Validator\Validator\SkuValidator as MainSkuValidator;
 
 class SkuValidator extends Validator implements ProductValidatorContract
 {
@@ -39,7 +40,7 @@ class SkuValidator extends Validator implements ProductValidatorContract
     private function hasValidSku(ProductInterface $product)
     {
         foreach ($product->getSku() as $sku) {
-            if((new SkuValidator($sku))->validate()) {
+            if((new MainSkuValidator())->validate($sku)) {
                 return true;
             }
         }

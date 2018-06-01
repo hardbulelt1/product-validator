@@ -8,10 +8,10 @@ namespace Validator\Validator\Factory;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Validator\Validator\Contracts\Sku\SkuValidatorContract;
 use Validator\Validator\Sku\CompulsoryFiltersValidator;
 use Validator\Validator\Sku\FeaturesValidator;
 use Validator\Validator\Sku\PriceValidator;
-use Validator\Validator\Sku\SkuValidatorContract;
 
 class SkuValidatorFactory
 {

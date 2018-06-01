@@ -5,8 +5,8 @@
  */
 namespace Validator\Validator;
 use Validator\Models\Product\ProductInterface;
+use Validator\Validator\ContractsProduct\ProductValidatorContract;
 use Validator\Validator\Factory\ProductValidatorFactory;
-use Validator\Validator\Product\Contracts\ProductValidatorContract;
 
 
 class ProductValidator extends Validator implements ProductValidatorContract

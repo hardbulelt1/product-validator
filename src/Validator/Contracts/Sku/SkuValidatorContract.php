@@ -4,7 +4,7 @@
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
 
-namespace Validator\Validator\Sku;
+namespace Validator\Validator\Contracts\Sku;
 
 
 use Validator\Models\Sku\SkuInterface;

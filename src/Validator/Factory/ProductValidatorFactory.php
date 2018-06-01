@@ -8,10 +8,10 @@ namespace Validator\Validator\Factory;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Validator\Validator\ContractsProduct\ProductValidatorContract;
 use Validator\Validator\Product\CategoriesValidator;
 use Validator\Validator\Product\CodeValidator;
 use Validator\Validator\Product\CompulsoryFiltersValidator;
-use Validator\Validator\Product\Contracts\ProductValidatorContract;
 use Validator\Validator\Product\DescriptionValidator;
 use Validator\Validator\Product\Id1cValidator;
 use Validator\Validator\Product\ImagesValidator;

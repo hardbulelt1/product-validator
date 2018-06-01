@@ -6,22 +6,12 @@
 
 namespace Validator\Validator;
 use Validator\Models\Sku\SkuInterface;
+use Validator\Validator\Contracts\Sku\SkuValidatorContract;
 use Validator\Validator\Factory\SkuValidatorFactory;
-use Validator\Validator\Sku\SkuValidatorContract;
 
 
 class SkuValidator extends Validator implements SkuValidatorContract
 {
-    private $sku;
-    private $is_valid;
-
-    public function __construct(SkuInterface $sku)
-    {
-        $this->sku = $sku;
-        $this->is_valid = true;
-    }
-
-
     /**
      * @param SkuInterface $sku
      * @return bool

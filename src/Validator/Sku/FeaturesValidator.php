@@ -9,6 +9,7 @@ namespace Validator\Validator\Sku;
 
 use Validator\Message\ValidatorMessage;
 use Validator\Models\Sku\SkuInterface;
+use Validator\Validator\Contracts\Sku\SkuValidatorContract;
 use Validator\Validator\Validator;
 
 class FeaturesValidator extends Validator implements SkuValidatorContract
