@@ -28,9 +28,4 @@ abstract class Validator
     {
         $this->messages[] = $productValidatorMessage;
     }
-
-    /**
-     * @return bool
-     */
-    public abstract function validate(): bool;
 }

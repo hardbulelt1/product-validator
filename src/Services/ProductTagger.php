@@ -86,7 +86,7 @@ class ProductTagger
                 }
             }
             $feature = $this->featureService->getByCode($key);
-            if (isset($feature)) {
+            if (!empty($feature)) {
                 $feature = $feature[0];
                 if ($feature->getIsForProduct()) {
                     if (!$this->product->hasFeature($key)) {

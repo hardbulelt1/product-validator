@@ -4,11 +4,13 @@
  * @author: Denis Medvedevskih d.medvedevskih@velosite.ru
  */
 
-namespace Validator\Sku;
+namespace Validator\Validator;
 use Validator\Models\Sku\SkuInterface;
-use Validator\Validator\Validator;
+use Validator\Validator\Factory\SkuValidatorFactory;
+use Validator\Validator\Sku\SkuValidatorContract;
 
-class SkuValidator extends Validator
+
+class SkuValidator extends Validator implements SkuValidatorContract
 {
     private $sku;
     private $is_valid;
@@ -19,24 +21,25 @@ class SkuValidator extends Validator
         $this->is_valid = true;
     }
 
+
     /**
+     * @param SkuInterface $sku
      * @return bool
      */
-    public function validate(): bool
+    public function validate(SkuInterface $sku): bool
     {
-        if ($this->sku->getPriceCurrent() == 0 && $this->sku->getProduct()->getPriceVariable() == false) {
-            $this->is_valid = false;
-        }
-        if ($this->sku->getProduct()->is_bike() && (!$this->sku->hasFeature('color') || !$this->sku->hasFeature('frame_size'))) {
-            $this->is_valid = false;
-        }
-        if ($this->sku->getProduct()->isKickScooter() && !$this->sku->hasFeature('color')) {
-            $this->is_valid = false;
+        $is_validate = true;
+        $skuFactory = new SkuValidatorFactory();
+        $skuFactory->make();
+        foreach ($skuFactory->getValidators() as $validator) {
+            if ($validator->validate($sku) === false) {
+                $is_validate = false;
+            }
+            foreach ($validator->getMessages() as $message) {
+                $this->addMessage($message);
+            }
         }
 
-        $this->sku->setValid($this->is_valid);
-
-        return $this->is_valid;
+        return $is_validate;
     }
-
 }

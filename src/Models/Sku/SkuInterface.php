@@ -76,9 +76,9 @@ interface SkuInterface
 
     /**
      * @param $value
-     * @return int|null
+     * @return void
      */
-    public function setStatureMax($value): ?int;
+    public function setStatureMax($value);
 
 
 
