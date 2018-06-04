@@ -1,7 +1,7 @@
 {
     "name": "Validator/product-validator",
     "description": "Validation products",
-    "version": "0.4.7",
+    "version": "0.4.8",
     "keywords": [
         "validation",
         "package"
@@ -15,12 +15,10 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
         "php" : ">=5.3.0",
         "doctrine/orm": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit" : "4.*"
     },
     "autoload": {
         "psr-4": {
@@ -30,11 +28,6 @@
     "autoload-dev": {
         "psr-4": {
             "Validator\\Test\\": "tests"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
         }
     }
 }
