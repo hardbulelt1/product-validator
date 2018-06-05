@@ -1,7 +1,7 @@
 {
     "name": "Validator/product-validator",
     "description": "Validation products",
-    "version": "0.4.9",
+    "version": "0.5.0",
     "keywords": [
         "validation",
         "package"

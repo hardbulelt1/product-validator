@@ -21,7 +21,7 @@ use Validator\Validator\Factory\ProductValidatorFactory;
 class ProductValidator extends Validator implements ProductValidatorContract
 {
 
-    private $catelogService;
+    private $catalogService;
     private $featureService;
     private $seriesService;
     private $tagRulesService;
@@ -35,7 +35,7 @@ class ProductValidator extends Validator implements ProductValidatorContract
         TagRulesServiceContract $tagRulesServiceContract
     )
     {
-        $this->catelogService = $catalogServiceContract;
+        $this->catalogService = $catalogServiceContract;
         $this->featureService = $featureServiceContract;
         $this->seriesService = $seriesServiceContract;
         $this->tagRulesService = $tagRulesServiceContract;
@@ -48,7 +48,7 @@ class ProductValidator extends Validator implements ProductValidatorContract
      */
     public function validate(ProductInterface $product): bool
     {
-        $factory = new ProcessFactory($this->em, $this->catelogService, $this->featureService, $this->seriesService, $this->tagRulesService);
+        $factory = new ProcessFactory($this->em, $this->catalogService, $this->featureService, $this->seriesService, $this->tagRulesService);
         $productProcess = new ProductProcess($factory);
         $productProcess->run($product);
         $isValid = true;
