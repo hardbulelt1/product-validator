@@ -51,18 +51,18 @@ class ProductValidator extends Validator implements ProductValidatorContract
         $factory = new ProcessFactory($this->em, $this->catelogService, $this->featureService, $this->seriesService, $this->tagRulesService);
         $productProcess = new ProductProcess($factory);
         $productProcess->run($product);
-        $is_validate = true;
+        $isValid = true;
         $productFactory = new ProductValidatorFactory();
         $productFactory->make();
         foreach ($productFactory->getValidators() as $validator) {
             if ($validator->validate($product) === false && ($validator->isRequired())) {
-                $is_validate = false;
+                $isValid = false;
             }
             foreach ($validator->getMessages() as $message) {
                 $this->addMessage($message);
             }
         }
 
-        return $is_validate;
+        return $isValid;
     }
 }
