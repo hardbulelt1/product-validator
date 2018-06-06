@@ -42,7 +42,7 @@ class SortingProcess  implements ProcessInterface
 
         $sortPopularity = $basicSortWeight;
         $sortComments = count($product->getComments()) / $maxComments;
-        $sortPrice = $product->getPriceCurrent() / $maxPrice;
+        $sortPrice = !is_numeric($product->getPriceCurrent()) ? 0 : $product->getPriceCurrent() / $maxPrice;
 
         $colors = [];
         foreach ($product->getSku() as $sku) {

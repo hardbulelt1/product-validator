@@ -85,9 +85,13 @@ class ProductTagger
                     return false;
                 }
             }
-            $feature = $this->featureService->getByCode($key);
+            try {
+                $feature = $this->featureService->getByCode($key);
+            } catch (\Exception $e) {
+                return false;
+            }
             if (!empty($feature)) {
-                $feature = $feature[0];
+                $feature = is_array($feature) ? $feature[0] : $feature;
                 if ($feature->getIsForProduct()) {
                     if (!$this->product->hasFeature($key)) {
                         return false;

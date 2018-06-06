@@ -79,7 +79,7 @@ interface ProductInterface
     /**
      * @return int|null
      */
-    public function getPriceCurrent(): ?int;
+    public function getPriceCurrent();
 
     /**
      * @return bool
