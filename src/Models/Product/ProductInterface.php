@@ -236,19 +236,19 @@ interface ProductInterface
 
     /**
      * @param $value
-     * @return mixed
+     * @return void
      */
     public function setSortPopularity($value);
 
     /**
      * @param $value
-     * @return mixed
+     * @return void
      */
     public function setSortComments($value);
 
     /**
      * @param $value
-     * @return mixed
+     * @return void
      */
     public function setSortPrice($value);
 
