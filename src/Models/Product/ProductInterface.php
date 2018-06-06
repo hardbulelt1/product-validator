@@ -254,13 +254,12 @@ interface ProductInterface
 
     /**
      * @param $value
-     * @return mixed
      */
     public function setColorCountInStock($value);
 
     /**
      * @param $gender
-     * @return mixed
+     * @return void
      */
     public function setGender($gender);
 

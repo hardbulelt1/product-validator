@@ -48,9 +48,6 @@ class ProductValidator extends Validator implements ProductValidatorContract
      */
     public function validate(ProductInterface $product): bool
     {
-        $factory = new ProcessFactory($this->em, $this->catalogService, $this->featureService, $this->seriesService, $this->tagRulesService);
-        $productProcess = new ProductProcess($factory);
-        $productProcess->run($product);
         $isValid = true;
         $productFactory = new ProductValidatorFactory();
         $productFactory->make();
