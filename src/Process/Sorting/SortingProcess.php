@@ -33,11 +33,11 @@ class SortingProcess  implements ProcessInterface
         }
 
         $basicSortWeight = 0;
-        $basicSortWeight += $product->getStockTotal() / $maxStock * .0;
-        $basicSortWeight += $product->getViewsCount() / $maxViews * .15;
-        $basicSortWeight += $product->getCartCount() / $maxCart * .35;
+        $basicSortWeight += $product->getStockTotal() / $maxStock * .35;
+        $basicSortWeight += $product->getViewsCount() / $maxViews * .25;
+        $basicSortWeight += $product->getCartCount() / $maxCart * .15;
         if ($maxOwnStockInCategory > 0) {
-            $basicSortWeight += ($product->getStockWarehouse() + $product->getStockShop()) / $maxOwnStockInCategory * .5;
+            $basicSortWeight += ($product->getStockWarehouse() + $product->getStockShop()) / $maxOwnStockInCategory * .25;
         }
 
         $sortPopularity = $basicSortWeight;
