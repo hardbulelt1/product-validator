@@ -5,12 +5,13 @@
  */
 
 namespace Validator\Process\Sorting;
+
 use Validator\Process\Interfaces\ProcessInterface;
 use Validator\Models\Product\ProductInterface;
 use Validator\Services\Contracts\Catalog\CatalogServiceContract;
 
 
-class SortingProcess  implements ProcessInterface
+class SortingProcess implements ProcessInterface
 {
     private $catalog;
 
@@ -26,7 +27,7 @@ class SortingProcess  implements ProcessInterface
         $maxCart = $this->catalog->getMaxCart();
         $maxComments = $this->catalog->getMaxComments();
         $maxPrice = $this->catalog->getMaxPrice();
-        if (count($product->get_categories()) > 0) {
+        if (count($product->get_categories()) > 0 && !is_null($product->getCanonicalCategory()->getId())) {
             $maxOwnStockInCategory = $this->catalog->getMaxOwnStockPerCategory($product->getCanonicalCategory()->getId());
         } else {
             $maxOwnStockInCategory = $this->catalog->getMaxOwnStock();
@@ -34,8 +35,8 @@ class SortingProcess  implements ProcessInterface
 
         $basicSortWeight = 0;
         $basicSortWeight += $product->getStockTotal() / $maxStock * .35;
-        $basicSortWeight += $product->getViewsCount() / $maxViews * .25;
-        $basicSortWeight += $product->getCartCount() / $maxCart * .15;
+        $basicSortWeight += $product->getViewsCount() / $maxViews * .3;
+        $basicSortWeight += $product->getCartCount() / $maxCart * .35;
         if ($maxOwnStockInCategory > 0) {
             $basicSortWeight += ($product->getStockWarehouse() + $product->getStockShop()) / $maxOwnStockInCategory * .25;
         }
