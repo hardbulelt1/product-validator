@@ -27,7 +27,7 @@ interface ProductInterface
     /**
      * @return SkuInterface[]|null
      */
-    public function getSku();
+    public function getSku() ;
 
     /**
      * @return null|String
@@ -80,6 +80,11 @@ interface ProductInterface
      * @return int|null
      */
     public function getPriceCurrent();
+
+    /**
+     * @return float
+     */
+    public function getPriceCurrentNumeric(): float;
 
     /**
      * @return bool
