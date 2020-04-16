@@ -82,6 +82,8 @@ interface ProductInterface
     public function getPriceCurrent();
 
     /**
+     * Get price current in float format
+     *
      * @return float
      */
     public function getPriceCurrentNumeric(): float;
