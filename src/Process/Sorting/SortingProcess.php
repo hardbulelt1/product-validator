@@ -27,19 +27,11 @@ class SortingProcess implements ProcessInterface
         $maxCart = $this->catalog->getMaxCart();
         $maxComments = $this->catalog->getMaxComments();
         $maxPrice = $this->catalog->getMaxPrice();
-        if (count($product->get_categories()) > 0 && !is_null($product->getCanonicalCategory()->getId())) {
-            $maxOwnStockInCategory = $this->catalog->getMaxOwnStockPerCategory($product->getCanonicalCategory()->getId());
-        } else {
-            $maxOwnStockInCategory = $this->catalog->getMaxOwnStock();
-        }
 
         $basicSortWeight = 0;
         $basicSortWeight += $product->getStockTotal() / $maxStock * .35;
         $basicSortWeight += $product->getViewsCount() / $maxViews * .3;
         $basicSortWeight += $product->getCartCount() / $maxCart * .35;
-        if ($maxOwnStockInCategory > 0) {
-            $basicSortWeight += ($product->getStockWarehouse() + $product->getStockShop()) / $maxOwnStockInCategory * .25;
-        }
 
         $sortPopularity = $basicSortWeight;
         $sortComments = count($product->getComments()) / $maxComments;
