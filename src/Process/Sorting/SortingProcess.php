@@ -20,6 +20,9 @@ class SortingProcess implements ProcessInterface
         $this->catalog = $catalog;
     }
 
+    /**
+     * @param ProductInterface $product
+     */
     public function run(ProductInterface $product)
     {
         $maxStock = $this->catalog->getMaxStock();
